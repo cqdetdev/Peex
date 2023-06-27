@@ -292,7 +292,7 @@ type eventItemDamageHandler interface {
 }
 
 type eventItemPickupHandler interface {
-	HandleItemPickup(ctx *event.Context, i item.Stack)
+	HandleItemPickup(ctx *event.Context, i *item.Stack)
 }
 
 type eventItemDropHandler interface {
@@ -469,7 +469,7 @@ func (s *Session) HandleItemDamage(ctx *event.Context, i item.Stack, damage int)
 
 func (s *Session) HandleItemPickup(ctx *event.Context, i item.Stack) {
 	s.handleEvent(eventItemPickup, func(h Handler) {
-		h.(eventItemPickupHandler).HandleItemPickup(ctx, i)
+		h.(eventItemPickupHandler).HandleItemPickup(ctx, &i)
 	})
 }
 
